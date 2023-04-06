@@ -1,10 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
 var pwdCharacter={
+//create array for all the letters
 pwdAlphabet:["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
-
+//create array for all the numbers
 pwdNumbers:["0","1","2","3","4","5","6","7","8","9"],
-
+//create array for all the special characters
 pwdSpecialCHR:["!","\"","#","$","%","&","\'","(",")","*","+",",","-",".","/",":",";","<",">","=","?","@","[","]","^","_","`","{","}","|","~"]
 }
 
@@ -22,17 +24,18 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 function generatePassword(){
-
+//creates the password criteria's
   var currentLength =0;
-  var characterCount = prompt("How many characters in your password");
   var completePWD = "";
-  console.log(characterCount);
+
+  var characterCount = prompt("How many characters in your password");
+
   Number(characterCount);
 
-  if (Number.isNaN(Number(characterCount))===true||characterCount < 8 || characterCount>128){
+  if (Number.isNaN(Number(characterCount))===true||characterCount < 8 || characterCount > 128){
   alert(characterCount+' is not a valid number between: 8 - 128');
   }else{
-
+    //asks user for all the variables 
     var useLower =confirm('Include lowercase?');
     console.log(useLower);
 
@@ -47,7 +50,9 @@ function generatePassword(){
   }
   if (useLower===false && useUpper===false && useSpecial===false && useNumber===false){
   alert('Must select at least one of the options.');
-}else {
+}else{
+    //loops all the different variables and adds them to the password if user selected them
+
     while (currentLength < characterCount){
       if (useLower===true){
           var lc = pwdCharacter.pwdAlphabet[Math.floor(Math.random()*26)]
@@ -71,5 +76,6 @@ function generatePassword(){
        }
 }
 }
+//returns the password to the calling function
 return completePWD;
 }
